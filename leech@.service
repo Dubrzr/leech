@@ -1,0 +1,13 @@
+[Unit]
+Description=Leech docker services
+Requires=docker.service
+After=docker.service
+
+[Service]
+ExecStart=/usr/bin/docker start -a %I
+ExecStop=/usr/bin/docker stop -t 30 %I
+Restart=always
+RestartSec=30
+
+[Install]
+WantedBy=multi-user.target
