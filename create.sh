@@ -40,7 +40,7 @@ sudo docker network create --subnet $d_subnet.0/16 $d_network_name;
 
 # DELUGE
 mkdir -p $main_dir/deluge/appdata;
-sudo docker create --name deluge -v $main_dir/deluge/appdata:/config -v $downloads_dir:/downloads -e pgid=$gid -e puid=$uid -e tz=$tz -p $listen:6906:8112 --ip $d_subnet.56 --network $d_network_name --dns $d_dns linuxserver/deluge
+sudo docker create --name deluge -v $main_dir/deluge/appdata:/config -v $downloads_dir:/downloads -e PGID=$gid -e PUID=$uid -e TZ=$tz -e UMASK_SET=022 -p $listen:6906:8112 --ip $d_subnet.56 --network $d_network_name --dns $d_dns linuxserver/deluge
 
 # NZBGET
 mkdir -p $main_dir/nzbget/appdata;
